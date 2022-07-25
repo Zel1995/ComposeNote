@@ -6,9 +6,7 @@ import com.example.notecompose.feature_note.data.data_source.NoteDataBase
 import com.example.notecompose.feature_note.data.data_source.NoteDataBase.Companion.DATABASE_NAME
 import com.example.notecompose.feature_note.data.repository.NoteRepositoryImpl
 import com.example.notecompose.feature_note.domain.repository.NoteRepository
-import com.example.notecompose.feature_note.domain.use_case.DeleteNoteUseCase
-import com.example.notecompose.feature_note.domain.use_case.GetNotesUseCase
-import com.example.notecompose.feature_note.domain.use_case.NoteUseCases
+import com.example.notecompose.feature_note.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,7 +34,9 @@ object AppModule {
     fun provideNoteUseCases(repository: NoteRepository): NoteUseCases {
         return NoteUseCases(
             getNotes = GetNotesUseCase(repository),
-            deleteNote = DeleteNoteUseCase(repository)
+            deleteNote = DeleteNoteUseCase(repository),
+            addNote = AddNoteUseCase(repository),
+            getNote = GetNoteUseCase(repository)
         )
     }
 }
